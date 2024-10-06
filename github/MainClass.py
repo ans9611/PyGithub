@@ -77,6 +77,7 @@ from . import (
     Repository,
 )
 from .Requester import Requester
+import fickling
 
 DEFAULT_BASE_URL = "https://api.github.com"
 DEFAULT_STATUS_URL = "https://status.github.com"
@@ -760,7 +761,7 @@ class Github:
         :param f: the file-like object to unpickle from
         :return: the unpickled object
         """
-        return self.create_from_raw_data(*pickle.load(f))
+        return self.create_from_raw_data(*fickling.load(f))
 
     def get_oauth_application(self, client_id, client_secret):
         return github.ApplicationOAuth.ApplicationOAuth(
