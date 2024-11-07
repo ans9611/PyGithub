@@ -838,7 +838,7 @@ class GithubIntegration:
                 "User-Agent": "PyGithub/Python",
             },
             json=body,
-        )
+        timeout=60)
 
         if response.status_code == 201:
             return InstallationAuthorization.InstallationAuthorization(
@@ -875,6 +875,6 @@ class GithubIntegration:
         response = requests.get(
             f"{self.base_url}/repos/{owner}/{repo}/installation",
             headers=headers,
-        )
+        timeout=60)
         response_dict = response.json()
         return Installation.Installation(None, headers, response_dict, True)
