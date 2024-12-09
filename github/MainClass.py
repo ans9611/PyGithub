@@ -77,6 +77,7 @@ from . import (
     Repository,
 )
 from .Requester import Requester
+from security import safe_requests
 
 DEFAULT_BASE_URL = "https://api.github.com"
 DEFAULT_STATUS_URL = "https://status.github.com"
@@ -872,7 +873,7 @@ class GithubIntegration:
             "User-Agent": "PyGithub/Python",
         }
 
-        response = requests.get(
+        response = safe_requests.get(
             f"{self.base_url}/repos/{owner}/{repo}/installation",
             headers=headers,
         )
